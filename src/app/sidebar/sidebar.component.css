@@ -1,0 +1,38 @@
+.flex-container{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 188px;
+    height: 1024px;
+    height: 1366px;
+    
+    background-color: #18212b;
+    position: absolute;
+    z-index: 3;
+    left: -188px;
+    
+    top: 0;
+    /* float: left; 
+    clear:left; */
+    transition: all 200ms linear;
+}
+
+.active{
+    left: 0px;
+    transition: all 200ms linear;
+}
+
+/* If the screen size is 768px wide or less, hide the element */
+@media only screen and (max-width: 768px) {
+    .flex-container{
+        left: 0px;
+        transition: all 200ms linear;
+        background-color: green;
+    }
+    .active{
+        left:-188px;
+        transition: all 200ms linear;
+    }
+  }
+
+

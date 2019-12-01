@@ -1,0 +1,28 @@
+<nav class="navbar navbar-fixed-top Rectangle">
+    
+    <div class="hamb" (click)="toggleSidebar()"
+        style="cursor: pointer;" [ngClass]="{'active':isOpen}">
+        <span class="hambSpan" [ngClass]="{'active':isOpen}"></span>         
+        <span class="hambSpan" [ngClass]="{'active':isOpen}"></span>
+        <span class="hambSpan" [ngClass]="{'active':isOpen}"></span>
+        <!-- <span class="hambSpan" *ngIf= "!isOpen"></span> -->
+    </div>
+
+    <div class="navbar-header">
+        <div class="Overview" [ngClass]="{'active':isOpen}">OVERVIEW</div>
+    </div>
+
+    <div style="position: relative; cursor: pointer; right: 20px;" 
+        (click)="onLogIn()">
+        <img src="assets/notification.svg" class="User-Avatar-Image">
+            <div *ngIf="isMenuOpen" class="login-dropdown">
+                <div (click)="onChangePhoto()" style="cursor: pointer;">Change photo</div>
+                <div style="cursor: pointer;" (click)="onDeletePhoto()">Delete photo</div>
+            </div>
+    </div>
+</nav>
+
+<app-sidebar [isHambOpen]="isOpen" (onCloseSidebar)="toggleSidebar()"></app-sidebar>
+
+<!-- <div (click)="toggleSidebar()" id="Xbutton" *ngIf="isOpen" 
+    style="cursor: pointer;">X</div>    [ngClass]="{'active':isOpen}"-->

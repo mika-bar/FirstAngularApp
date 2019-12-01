@@ -1,0 +1,21 @@
+
+<!-- hamburger menu -->
+
+<!-- <div class="flex-container" [ngClass]="{active:isOpen}" >
+    
+    <div class="hamb" (click)="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>   
+[ngClass]="{active:isOpen}" -->
+
+
+<div class="flex-container" [ngClass]="{'active': isHambOpen}">
+    <app-sidebar-item
+        (closeSiderbarEvent)="closeSide($event)"
+        *ngFor="let item of sidebarItems ; let i = index"
+        [sidebarItem]="item"
+        [index]="i">
+        </app-sidebar-item>
+</div>
