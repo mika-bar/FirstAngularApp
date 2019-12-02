@@ -12,6 +12,10 @@
 
 
 <div class="flex-container" [ngClass]="{'active': isHambOpen}">
+    <!-- ngswitch: index
+        <searchCom case: searchTab></search>
+        <favoritehCom case: favoriteTab></search> -->
+
     <app-sidebar-item
         (closeSiderbarEvent)="closeSide($event)"
         *ngFor="let item of sidebarItems ; let i = index"

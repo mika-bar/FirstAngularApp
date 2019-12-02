@@ -16,8 +16,10 @@ import { AppComponent } from './app.component';
 
 const appRoutes: Routes = [
     {path: '', component: AppComponent,children:[
-        {path: 'sidebar', component: SidebarComponent},
+        // {path: 'sidebar', component: SidebarComponent},
         {path: ':index', component: SidebarItemComponent}
+        // {path: 'search', component: searchComp},
+        // {path: 'favorite', component: favoriteComp}
     ]
 }
 ];
