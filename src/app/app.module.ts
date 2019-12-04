@@ -11,6 +11,9 @@ import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.compon
 import { AppRoutingModule } from './app-routing.module';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -29,7 +32,7 @@ import { HomeComponent } from './home/home.component';
     FlexLayoutModule,
     FormsModule  
   ],
-  providers: [],
+  providers: [AuthGuard,AuthService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

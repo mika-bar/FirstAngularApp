@@ -12,3 +12,9 @@
     top: 70px;
     
 }
+.loginData{
+    position: absolute;
+    z-index: 3;
+    left:200px;
+    top: 300px;
+}
