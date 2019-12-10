@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // import { HeaderComponent } from './header/header.component';
@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth-guard.service';
 import { HeaderComponent } from './header/header.component';
+import { FavouritesComponent } from './favourites/favourites.component';
+
 
 // const appRoutes: Routes = [
 //     {path: '', component: AppComponent,children:[
@@ -20,18 +22,24 @@ import { HeaderComponent } from './header/header.component';
 // ];
 
 const appRoutes: Routes = [
-    {path: '', component: HomeComponent},
-        // {path: 'sidebar', component: SidebarComponent},
+    { path: '', component: HomeComponent },
+    // {path: 'sidebar', component: SidebarComponent},
     // {path: '', redirectTo: '/content', pathMatch: 'full' },
-    {path: 'content',canActivate: [AuthGuard], component: HeaderComponent, children:[
-        {path: ':index', component: SidebarItemComponent}
-    ]
-    
-}
-    
-        // {path: 'search', component: searchComp}, canActivate: [AuthGuard]
-        // {path: 'favorite', component: favoriteComp}
-    
+    {
+        path: 'content', canActivate: [AuthGuard], component: HeaderComponent, children: [
+            // {path: ':index', component: SidebarItemComponent}
+            { path: 'SEARCH', component: SidebarItemComponent },
+            // { path: 'FAVOURITES', redirectTo:'/FavouritesPage' },
+            { path: 'FAVOURITES', component:FavouritesComponent },
+            { path: 'X', component: SidebarItemComponent }
+        ]
+
+    }
+    // {path:'FavouritesPage', component:FavouritesComponent}
+
+    // {path: 'search', component: searchComp}, canActivate: [AuthGuard]
+    // {path: 'favorite', component: favoriteComp}
+
 
 ];
 

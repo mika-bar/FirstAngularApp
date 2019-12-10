@@ -1,0 +1,13 @@
+<!-- <div class="pokemons-list" infiniteScroll (scrolled)="onScrollDown()"> -->
+<div class="pokemons-container">
+    <div class="pokemons-list" infiniteScroll (scrolled)="onScrollDown()" [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50" [scrollWindow]="true"  alwaysCallback="true" [infiniteScrollContainer]="app-pokemons-list" [fromRoot]="true"> 
+        <div class="pokemons-list-item" *ngFor="let item of namesArray; let i=index" (mouseover)="hover=true" (mouseleave)="hover=false" >{{ item }}
+           <img src="assets/like.png" style="display: none; width: 30px; height:30px;align-self: flex-end;" [ngStyle]="{display: hover==true  ? 'inline' : 'none'}" 
+           (click)="saveToFavourites(item)">
+        </div>
+        <!-- <div class="pokemons-list-item" *cdkVirtualFor="let item of namesArray; let i=index" 
+            [infiniteScrollContainer]="app-pokemons-list" [fromRoot]="true"
+        onscroll="onScrollDown()" >{{ item }}</div> -->
+    </div>
+</div>

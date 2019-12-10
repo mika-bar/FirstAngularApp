@@ -22,7 +22,9 @@
     </div>
 </nav>
 
-<app-sidebar [isHambOpen]="isOpen" (onCloseSidebar)="toggleSidebar()"></app-sidebar>
+<app-sidebar [isHambOpen]="isOpen" (onCloseSidebar)="toggleSidebar()" (onFavourites)="togglePokemonList()"></app-sidebar>
+<app-pokemons-list *ngIf="!isFavouritesOpen"></app-pokemons-list>
+<router-outlet></router-outlet>
 
 <!-- <div (click)="toggleSidebar()" id="Xbutton" *ngIf="isOpen" 
     style="cursor: pointer;">X</div>    [ngClass]="{'active':isOpen}"-->

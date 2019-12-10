@@ -51,7 +51,8 @@
     background-color: #18212b;
     clear: none;
     display: flex;
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     z-index: 1;
   }
 

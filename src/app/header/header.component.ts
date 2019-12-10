@@ -7,29 +7,35 @@ import { $ } from 'protractor';
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-   
-    
-    isOpen=true;
+
+
+    isOpen = true;
 
     isMenuOpen = false;
 
-    onChangePhoto(){
+    isFavouritesOpen= false;
+
+    onChangePhoto() {
 
     }
-    onDeletePhoto(){
+    onDeletePhoto() {
 
     }
 
-    onLogIn(){
+    onLogIn() {
         this.isMenuOpen = !this.isMenuOpen;
 
     }
 
 
-    toggleSidebar(){
+    toggleSidebar() {
         this.isOpen = !this.isOpen;
         // $(".flex-container").classList.toggle('active');
-  }
+    }
+
+    togglePokemonList() {
+        this.isFavouritesOpen=!this.isFavouritesOpen;
+    }
 
 
 }

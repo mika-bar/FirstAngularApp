@@ -13,6 +13,8 @@ export class SidebarItemComponent implements OnInit {
   @Input() index: number;
   @Input() sidebarItem: SidebarItem;
   @Output() closeSiderbarEvent= new EventEmitter<boolean>();
+  @Output() displayFavouritesEvent= new EventEmitter<boolean>();
+  display=false;
 
   ngOnInit() {
   }
@@ -21,6 +23,12 @@ export class SidebarItemComponent implements OnInit {
     //emit the clicking event, for closing the sidebar: change the isOpen
     //inside the header component
     this.closeSiderbarEvent.emit(true);
+  }
+
+  displayFavourites(){
+    this.display=!this.display;
+    this.displayFavouritesEvent.emit(this.display);
+    
   }
 
 }

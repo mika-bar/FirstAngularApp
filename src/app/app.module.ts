@@ -14,7 +14,11 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { CookieService } from 'ngx-cookie-service';
-
+import { PokemonsListComponent } from './pokemons-list/pokemons-list.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +27,19 @@ import { CookieService } from 'ngx-cookie-service';
     SidebarComponent,
     SidebarItemComponent,
     DropdownDirective,
-    HomeComponent
+    HomeComponent,
+    PokemonsListComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     // MatSidenavModule
     FlexLayoutModule,
-    FormsModule  
+    FormsModule,
+    HttpClientModule,
+    InfiniteScrollModule,
+    ScrollingModule  
   ],
   providers: [AuthGuard,AuthService,CookieService],
   bootstrap: [AppComponent]

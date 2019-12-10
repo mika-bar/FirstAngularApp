@@ -11,7 +11,9 @@ import { SidebarItem } from '../sidebar-item.model';
 export class SidebarComponent implements OnInit {
   
   @Input() isHambOpen: boolean;
+  @Input() isDisplayOpen: boolean;
   @Output() onCloseSidebar= new EventEmitter<any>();
+  @Output() onFavourites= new EventEmitter<any>();
 
   public sidebarItems: SidebarItem []=
   [
@@ -27,6 +29,11 @@ export class SidebarComponent implements OnInit {
   closeSide(closingEventData:boolean){
     this.isHambOpen=!closingEventData;
     this.onCloseSidebar.emit();
+  }
+
+  display(displayEventData:boolean){
+    this.isDisplayOpen=displayEventData;
+    this.onFavourites.emit();
   }
 
     
