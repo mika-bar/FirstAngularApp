@@ -1,0 +1,2 @@
+<img [hidden]="!showDefault" [src]="this.defaultImageUrl" class="table-img"/>
+<img *ngIf="this.imageUrlHasValue" [hidden]="showDefault" class="table-img" [src]="this.imageUrl"  (error)="this.imageNotFound()" (load)="this.imageFound()"/>

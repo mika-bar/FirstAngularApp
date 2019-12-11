@@ -1,0 +1,21 @@
+
+.cards-row{
+	display: flex;
+    justify-content: space-between;
+}
+
+.card{
+	width: 200px;
+	height: 150px;
+	background: white;
+	text-align: center
+}
+
+.card-title{
+	font-size: 30px;
+}
+
+.card-text{
+	margin-top: 5px;
+	font-size: 40px;
+}

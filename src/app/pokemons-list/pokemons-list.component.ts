@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError, tap, count } from 'rxjs/operators';
 import { Subject, throwError, Subscription, BehaviorSubject } from 'rxjs';
-import { Pokemon } from './pokemon-model.model'
+import { Pokemon, PokemonName } from './pokemon-model.model'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -14,25 +14,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./pokemons-list.component.css']
 })
 export class PokemonsListComponent implements OnInit {
-  public namesArray: string[] = [];
-
-  favouritesArray: string[] =[];
+  public namesArray: PokemonName[] = [];
+  favouritesArray: PokemonName[] = [];
   private cookievalue: string;
-
   error = new Subject<string>();
-
   private pokemonsSub: Subscription;
-
   result = new BehaviorSubject<Pokemon>(null);
-
   offset = 0;
 
   cookiesCount: number = 0;
   cookiedCountReduce: number = 0;
-
-  postsArray: string[] = [];
-
+  postsArray: PokemonName[] = [];
   nextUrl = '';
+  pokemonClickedOnce = false;
 
   @Input() index: number;
 
@@ -65,7 +59,11 @@ export class PokemonsListComponent implements OnInit {
         this.nextUrl = responseData.next;
         console.log(responseData);
         responseData.results.forEach(result => {
-          this.postsArray.push(result.name);
+          const pokemon = {
+            name: result.name,
+            isFavourite: this.isFavourite(result.name)
+          }
+          this.postsArray.push(pokemon);
         })
         this.namesArray = this.postsArray;
         console.log(this.namesArray);
@@ -77,8 +75,12 @@ export class PokemonsListComponent implements OnInit {
     );
   }
 
+  isFavourite(key) {
+    return this.cookieService.check(key);
+  }
+
   onScrollDown() {
-    // debugger
+    debugger
     this.offset = this.offset + 20;
     if (!!this.nextUrl) {
       // debugger
@@ -90,23 +92,35 @@ export class PokemonsListComponent implements OnInit {
     // this.errorSub.unsubscribe();
   }
 
-  saveToFavourites(item: string) {
-    
-    if(this.cookieService.check('user name')){
-      this.cookiedCountReduce=-1;
+  saveToFavourites(item: PokemonName, i: number) {
+
+    const cookies: {} = this.cookieService.getAll();
+    let numOfCookies = Object.keys(cookies).length;
+
+    if (!this.isFavourite(item.name)) {
+
+      item.isFavourite = true;
+
+      console.log("favourites before adding: " + numOfCookies);
+
+      this.favouritesArray.push(item);
+      this.cookieService.set(item.name, item.name);
+      this.cookievalue = this.cookieService.get(item.name);
+      console.log("added pokemon: " + this.cookievalue);
+      console.log("favourites after adding: " + numOfCookies);
+
     }
-    if(this.cookieService.check('user password')){
-      this.cookiedCountReduce=-1;
+    else {
+    
+
+      console.log("favourites before delete: " + numOfCookies);
+
+      console.log(this.cookievalue);
+      this.cookieService.delete(item.name);
+      item.isFavourite = false; 
+      console.log("favourites after delete: " + numOfCookies);
+
     }
-    const cookies:{} = this.cookieService.getAll();
-    console.log(Object.keys(cookies).length);
-    this.cookiesCount=  Object.keys(cookies).length + this.cookiedCountReduce + 1;
-    
-    
-    this.favouritesArray.push(item);
-    this.cookieService.set(`pokemon${this.cookiesCount}`, item);
-    this.cookievalue = this.cookieService.get(`pokemon${this.cookiesCount}`);
-    console.log(this.cookievalue);
   }
 }
 

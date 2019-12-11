@@ -36,6 +36,7 @@ export class HeaderComponent {
     togglePokemonList() {
         this.isFavouritesOpen=!this.isFavouritesOpen;
     }
+   
 
 
 }

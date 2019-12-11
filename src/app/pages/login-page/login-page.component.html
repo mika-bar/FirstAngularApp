@@ -1,0 +1,40 @@
+<div class="c-login">
+		<div class="c-logo">
+			<img class="logo" src="assets/img/logo-colored.png">
+		</div>
+		<form class="c-form" [formGroup]="form">
+			<div>
+				<div>
+					<mat-form-field class="full-width">
+						<input matInput placeholder="Email" [formControl]="form.controls['email']" type="email">
+					</mat-form-field>
+					<small class="gene-block" *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="mat-text-warn">
+						You must include an email address.
+					</small>
+					<small class="gene-block" *ngIf="form.controls['email'].errors && !(form.controls['email'].hasError('required')) && form.controls['email'].touched"
+					 class="mat-text-warn">
+						You must include a valid email address.
+					</small>
+				</div>
+			</div>
+			<div>
+				<div>
+					<mat-form-field class="full-width">
+						<input matInput placeholder="Password" [formControl]="form.controls['password']" type="password">
+					</mat-form-field>
+					<small class="gene-block" *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">
+						You must include password.
+					</small>
+					<small class="gene-block" *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched" class="mat-text-warn">
+						Your password must be at least 6 characters long.
+					</small>
+				</div>
+			</div>
+			<div class="sign-up-container">
+				<mat-card-actions style="width: 100%">
+					<app-button-wrapper [buttonValid]="form.valid" [fullWidth]="true" text="Login" (buttonClick)="loginClicked()" [isWaiting]="waitingResponse"></app-button-wrapper>
+				</mat-card-actions>
+			</div>
+			<footer></footer>
+		</form>
+</div>

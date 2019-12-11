@@ -5,7 +5,8 @@ export interface Pokemon{
     results: PokemonName[];
 }
 
-interface PokemonName {
+export class PokemonName {
     name: string;
-    url:string;
+    url?:string;
+    isFavourite: boolean;   
 }

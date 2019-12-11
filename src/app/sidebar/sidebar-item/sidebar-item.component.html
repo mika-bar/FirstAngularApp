@@ -4,6 +4,7 @@
     [routerLink]="[sidebarItem.name]"
     routerLinkActive="active"
     style="text-decoration:none"
+    (click)="displaySearch()"
     class="list-group-item clearfix item">
     <div class="pull-left">
         <h4 class="list-group-item-heading itemText">{{ sidebarItem.name }}</h4>

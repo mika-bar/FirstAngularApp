@@ -14,6 +14,7 @@ export class FavouritesComponent implements OnInit {
   constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
+    debugger
     this.fetchFavourites();
     // this.closeSiderbarEvent.emit(true);
   }

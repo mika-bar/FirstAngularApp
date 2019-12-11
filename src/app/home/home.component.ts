@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
 
   submitted = false;
 
-  @ViewChild('f', { static: false }) signupForm: NgForm;
-
+  //@ViewChild('f', { static: false }) signupForm: NgForm;
+  @ViewChild('f') signupForm: NgForm;
   constructor(private authService: AuthService, private cookieService: CookieService,
     private router:Router) { }
 

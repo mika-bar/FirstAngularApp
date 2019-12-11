@@ -1,0 +1,41 @@
+.c-menu {
+    background-color: #54235b;
+    height: 100%;
+}
+
+.no-style {
+    list-style: none;
+}
+
+.nav-item {
+    padding-left: 0;
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+.divider {
+    border-bottom: 1px solid rgba(125, 125, 125, 0.525);
+    margin: 15px -41px 25px;
+}
+
+a {
+    color: grey;
+    padding: 0;
+    font-size: 15px;
+}
+
+a:hover,
+.nav-link.active {
+    color: white;
+}
+
+.c-logo {
+    margin-top: 15%;
+    margin-bottom: 10px;
+}
+
+.s-company-name {
+    margin-left: 16%;
+    font-size: 22px;
+    color: white;
+}

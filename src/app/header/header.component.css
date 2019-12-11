@@ -27,6 +27,8 @@
 }
 
 .hamb.active{
+  display: none;
+
   margin-left: 188px;
   transition: all 200ms linear;
 }
@@ -82,11 +84,14 @@
   }
 
   .hamb.active{
+  display: inline;
   margin-left: 0px;  
   position:absolute;
   transition: all 200ms linear;
   }
   .hamb{
+    display: none;
+
     margin-left: 188px;
     transition: all 200ms linear;
   }

@@ -1,0 +1,2 @@
+<app-user-form *ngIf="user" [user]="user" buttonText="Update" title="User Edit" [waitingResponse]="waitingResponse"
+	(confirmAction)="updateUser($event)" (backAction)="backClicked()"></app-user-form>

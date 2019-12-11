@@ -1,5 +1,5 @@
 import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
-import { SidebarItem } from '../../sidebar-item.model';
+import { SidebarItem } from '../../models/sidebar-item.model';
 // import { EventEmitter } from 'events';
 
 
@@ -14,7 +14,9 @@ export class SidebarItemComponent implements OnInit {
   @Input() sidebarItem: SidebarItem;
   @Output() closeSiderbarEvent= new EventEmitter<boolean>();
   @Output() displayFavouritesEvent= new EventEmitter<boolean>();
+  @Output() displaySearchEvent= new EventEmitter<boolean>();
   display=false;
+  search=false;
 
   ngOnInit() {
   }
@@ -29,6 +31,11 @@ export class SidebarItemComponent implements OnInit {
     this.display=!this.display;
     this.displayFavouritesEvent.emit(this.display);
     
+  }
+  displaySearch(){
+    this.search= !this.search;
+    this.displaySearchEvent.emit(this.search);
+
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { SidebarItem } from '../sidebar-item.model';
+import { SidebarItem } from '../models/sidebar-item.model';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -12,8 +12,10 @@ export class SidebarComponent implements OnInit {
   
   @Input() isHambOpen: boolean;
   @Input() isDisplayOpen: boolean;
+  @Input() isSearchOpen: boolean;
   @Output() onCloseSidebar= new EventEmitter<any>();
   @Output() onFavourites= new EventEmitter<any>();
+  @Output() onSearch= new EventEmitter<any>();
 
   public sidebarItems: SidebarItem []=
   [
@@ -34,6 +36,12 @@ export class SidebarComponent implements OnInit {
   display(displayEventData:boolean){
     this.isDisplayOpen=displayEventData;
     this.onFavourites.emit();
+  }
+
+  showSearch(searchEvantData:boolean){
+    this.isSearchOpen=searchEvantData;
+    this.onSearch.emit();
+
   }
 
     
