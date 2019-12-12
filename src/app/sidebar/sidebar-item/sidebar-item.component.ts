@@ -15,8 +15,10 @@ export class SidebarItemComponent implements OnInit {
   @Output() closeSiderbarEvent= new EventEmitter<boolean>();
   @Output() displayFavouritesEvent= new EventEmitter<boolean>();
   @Output() displaySearchEvent= new EventEmitter<boolean>();
+  @Output() displayGithubSearchEvent= new EventEmitter<boolean>();
   display=false;
   search=false;
+  githubSearch=false;
 
   ngOnInit() {
   }
@@ -36,6 +38,10 @@ export class SidebarItemComponent implements OnInit {
     this.search= !this.search;
     this.displaySearchEvent.emit(this.search);
 
+  }
+  displayGitHub(){
+    this.githubSearch=!this.githubSearch;
+    this.displayGithubSearchEvent.emit(this.githubSearch);
   }
 
 }

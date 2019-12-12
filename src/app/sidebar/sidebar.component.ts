@@ -13,15 +13,18 @@ export class SidebarComponent implements OnInit {
   @Input() isHambOpen: boolean;
   @Input() isDisplayOpen: boolean;
   @Input() isSearchOpen: boolean;
+  @Input() isGithubSearchOpen: boolean;
   @Output() onCloseSidebar= new EventEmitter<any>();
   @Output() onFavourites= new EventEmitter<any>();
   @Output() onSearch= new EventEmitter<any>();
+  @Output() onGithubSearch= new EventEmitter<any>();
 
   public sidebarItems: SidebarItem []=
   [
     new SidebarItem('X'),
     new SidebarItem('SEARCH'),
-    new SidebarItem('FAVOURITES')
+    new SidebarItem('FAVOURITES'),
+    new SidebarItem('GITHUB')
   ];
 
   ngOnInit() {
@@ -43,6 +46,12 @@ export class SidebarComponent implements OnInit {
     this.onSearch.emit();
 
   }
+  showGithubSearch(githubSearchEventData:boolean){
+    this.isGithubSearchOpen=githubSearchEventData;
+    this.onGithubSearch.emit();
+
+  }
+  
 
     
   

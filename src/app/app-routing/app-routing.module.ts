@@ -13,6 +13,7 @@ import { HomeComponent } from '../home/home.component';
 import { AuthGuard } from '../auth-guard.service';
 import { HeaderComponent } from '../header/header.component';
 import { FavouritesComponent } from '../favourites/favourites.component';
+import { GithubComponent} from '../github/github.component'
 
 
 
@@ -87,7 +88,9 @@ const routes: Routes = [
 			{ path: 'SEARCH', component: SidebarItemComponent },
             // { path: 'FAVOURITES', redirectTo:'/FavouritesPage' },
             { path: 'FAVOURITES', component:FavouritesComponent },
-            { path: 'X', component: SidebarItemComponent }
+			{ path: 'X', component: SidebarItemComponent },
+			{ path: 'GITHUB', component: GithubComponent }
+			
         ]
 
     }

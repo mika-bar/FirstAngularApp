@@ -1,0 +1,10 @@
+<form #searchbarForm="ngForm" (ngSubmit)="onSubmit(searchbarForm)">
+  <div class="form-group">
+    <label for="repository-name">Enter repository: </label>
+    <input id="repository-name" class="form-control" ngModel name="repositoryName" required />
+  </div>
+  <div>
+    <button class="btn btn-primary" type="submit" [disabled]="!searchbarForm.valid">Search</button>
+  </div>
+</form>
+

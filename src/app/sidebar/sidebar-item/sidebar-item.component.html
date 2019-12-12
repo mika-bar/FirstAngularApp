@@ -24,6 +24,19 @@
     </div>
 </a>
 
+<a
+    *ngIf="index===3"
+    style="cursor: pointer;"
+    [routerLink]="[sidebarItem.name]"
+    routerLinkActive="active"
+    style="text-decoration:none"
+    (click)="displayGitHub()"
+    class="list-group-item clearfix item">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading itemText">{{ sidebarItem.name }}</h4>
+    </div>
+</a>
+
 <!-- class="list-group-item clearfix item" -->
 <!-- [routerLink]="/search" -->
 

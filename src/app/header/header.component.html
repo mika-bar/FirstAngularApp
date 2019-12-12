@@ -22,7 +22,7 @@
     </div>
 </nav>
 
-<app-sidebar [isHambOpen]="isOpen" (onCloseSidebar)="toggleSidebar()" (onFavourites)="togglePokemonList()" (onSearch)="togglePokemonList()"></app-sidebar>
+<app-sidebar [isHambOpen]="isOpen" (onCloseSidebar)="toggleSidebar()" (onFavourites)="togglePokemonList()" (onSearch)="togglePokemonList()" (onGithubSearch)="togglePokemonList()"></app-sidebar>
 <app-pokemons-list *ngIf="!isFavouritesOpen"></app-pokemons-list>
 <router-outlet></router-outlet>
 

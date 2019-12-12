@@ -20,6 +20,7 @@
         (closeSiderbarEvent)="closeSide($event)"
         (displayFavouritesEvent)="display($event)"
         (displaySearchEvent)="showSearch($event)"
+        (displayGithubSearchEvent)="showGithubSearch($event)"
         *ngFor="let item of sidebarItems ; let i = index"
         [sidebarItem]="item"
         [index]="i">
