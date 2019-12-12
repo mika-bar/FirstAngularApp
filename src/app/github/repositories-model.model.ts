@@ -7,7 +7,7 @@ export interface Repositories {
 export class Repository {
     name: string;
     private: boolean;
-    url: string;
+    html_url: string;
     language: string;
     stargazers_count: number;
 }

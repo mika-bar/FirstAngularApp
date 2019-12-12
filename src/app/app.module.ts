@@ -71,6 +71,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 // import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { GithubComponent } from './github/github.component';
+import { RepoTablComponent } from './components/repo-tabl/repo-tabl.component';
+import { RepoTableComponent } from './components/repo-table/repo-table.component';
 
 // scrollbar configuration
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -130,7 +132,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		HomeComponent,
 		PokemonsListComponent,
 		FavouritesComponent,
-		GithubComponent
+		GithubComponent,
+		RepoTablComponent,
+		RepoTableComponent
 	],
 	providers: [
 		CanActivateLoggedUser,
