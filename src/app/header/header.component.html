@@ -22,8 +22,11 @@
     </div>
 </nav>
 
-<app-sidebar [isHambOpen]="isOpen" (onCloseSidebar)="toggleSidebar()" (onFavourites)="togglePokemonList()" (onSearch)="togglePokemonList()" (onGithubSearch)="togglePokemonList()"></app-sidebar>
-<app-pokemons-list *ngIf="!isFavouritesOpen"></app-pokemons-list>
+<app-sidebar [isHambOpen]="isOpen" (onCloseSidebar)="toggleSidebar()" [isDisplayOpen]="isFavouritesOpen" (onFavourites)="showFavourites($event)" (onSearch)="showSearch($event)" 
+(onGithubSearch)="showGithubSearch($event)"></app-sidebar>
+
+<app-pokemons-list *ngIf="showPokemonsList"></app-pokemons-list>
+
 <router-outlet></router-outlet>
 
 <!-- <div (click)="toggleSidebar()" id="Xbutton" *ngIf="isOpen" 

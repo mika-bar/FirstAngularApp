@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { $ } from 'protractor';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
     selector: 'app-header',
@@ -11,14 +12,32 @@ export class HeaderComponent {
 
     isOpen = true;
 
+
     isMenuOpen = false;
 
-    isFavouritesOpen= false;
+    isFavouritesOpen = false;
 
-    onChangePhoto() {
+    showPokemonsList=true;
 
-    }
-    onDeletePhoto() {
+    // constructor(private breakpointObserver: BreakpointObserver) { 
+    //     const isSmallScreen = this.breakpointObserver.isMatched('(max-width: 768px)');
+    //     debugger
+    //     if (isSmallScreen) {
+    //         this.isOpen = false;
+    //     }
+    // }
+    // onChangePhoto() {
+
+    // }
+    // onDeletePhoto() {
+
+    // }
+    ngOnInit() {
+        // const isSmallScreen = this.breakpointObserver.isMatched('(max-width: 768px)');
+        // debugger
+        // if (isSmallScreen) {
+        //     this.isOpen = false;
+        // }
 
     }
 
@@ -34,9 +53,34 @@ export class HeaderComponent {
     }
 
     togglePokemonList() {
-        this.isFavouritesOpen=!this.isFavouritesOpen;
+        this.showPokemonsList = !this.showPokemonsList;
     }
-   
+
+    showFavourites(isFavouritesOpen: boolean){
+        if(isFavouritesOpen){
+            this.showPokemonsList=false;
+        }else{
+            this.showPokemonsList=true;
+        }
+
+    }
+    showSearch(isSearchOpen: boolean){
+        if(isSearchOpen){
+            this.showPokemonsList=true;
+        }else{
+            this.showPokemonsList=false;
+        }
+
+    }
+    showGithubSearch(isGithubSearchOpen: boolean){
+        if(isGithubSearchOpen){
+            this.showPokemonsList=false;
+        }else{
+            this.showPokemonsList=true;
+        }
+
+    }
+
 
 
 }
