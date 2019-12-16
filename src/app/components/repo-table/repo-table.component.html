@@ -1,0 +1,58 @@
+<div perfect-scrollbar class="page-body mat-card ">
+    <div class="gene-card-content">
+      <perfect-scrollbar  [style.height]="tableHeightVH + 'vh'">
+        <div class="table-responsive">
+          <table class="table  table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <ng-container *ngFor="let col of this.cols">
+                  <th scope="col">{{col.name}}</th>
+                </ng-container>
+                <th scope="col" *ngIf="this.withActions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let rowData of this.data; let idx = index" (click)="clicked=idx" [ngClass]="{'active':clicked===idx}">
+                <td>{{ ((this.page - 1) * this.itemsPerPage) + idx + 1}}</td>
+                <ng-container *ngFor="let col of this.cols">
+                    <td *ngIf="col.type === 'text'">{{utils.getPropByString(rowData,col.propName)}}</td>
+                    <td *ngIf="col.type === 'repo-name'" ><a target="_blank" style="text-decoration:none;" 
+                      [href]="redirectToRepo(rowData)" >{{utils.getPropByString(rowData,col.propName)}}</a></td>
+                    <!-- <td *ngIf="col.type === 'date'">{{utils.getPropByString(rowData,col.propName) | date:'short'}}</td> -->
+                    <td *ngIf="col.type === 'url'">
+                      <!-- <app-table-img defaultImageUrl="assets/img/user-default.svg" [imageUrl]="utils.getPropByString(rowData,col.propName)" ></app-table-img> -->
+                      <a [href]="utils.getPropByString(rowData,col.propName)" target="_blank">url link</a>
+                    </td>
+                </ng-container>
+                <td *ngIf="this.withActions">
+                  <button mat-button id="menu-button" [matMenuTriggerFor]="menu">
+                    <img class="dots-img" src="assets/img/dots.svg">
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item *ngIf="withEdit" (click)="editActionOnClick(rowData)">Edit</button>
+                    <button mat-menu-item *ngIf="withEventDone" (click)="eventDoneClicked(rowData)">Complete Event</button>
+                    <button mat-menu-item *ngIf="withReport" (click)="reportClicked(rowData)">Work Report</button>
+                    <button mat-menu-item *ngIf="withUserChangeBar" (click)="userChangeBarClicked(rowData)">Change Bar</button>
+                    <button mat-menu-item *ngIf="withWorkers" (click)="workerActionOnClick(rowData)">Workers</button>
+                    <button mat-menu-item *ngIf="withRemove" (click)="removeActionOnClick(rowData)">Remove</button>
+                  </mat-menu>
+                </td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+      </perfect-scrollbar>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="bottom-table" *ngIf="withPagination">
+      <div>Total Pages: {{this.totalPages}}</div>
+      <div class="pagination-container">
+        <img src="assets/img/next.png" class="next-img back-img" (click)="prevPageOnClick()">
+        <div class="current-page-style">{{this.page}}</div>
+        <img src="assets/img/next.png" class="next-img" (click)="nextPageOnClick()">
+      </div>
+    </div>
+  </div>
+  

@@ -57,5 +57,8 @@
     .item{
         background-color: green;
     }
+    .active{
+        background-color: grey;
+    }
 
 }

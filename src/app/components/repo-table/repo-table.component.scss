@@ -1,0 +1,92 @@
+.bottom-table{
+	margin: 10px 3% 0 3%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    height: 40px;
+    width: 20%;
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+}
+
+.next-img {
+    width: 15px;
+    height: 8px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.current-page-style {
+    text-align: center;
+    width: 30px;
+}
+
+.back-img {
+    transform: rotate(180deg)
+}
+
+th{
+	font-weight: 500;
+}
+
+.table{
+	margin-bottom: 0;
+}
+
+.dots-img{
+	width: 20px;
+	opacity: 0.4;
+}
+
+#menu-button{
+	min-width: 0 !important;
+	vertical-align: top !important;
+	line-height: 0;
+}
+
+
+
+// Material Styles
+
+td {
+	font-size: 14px;
+    vertical-align: baseline;
+}
+
+.mat-card {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.mat-menu-item {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 14px;
+    line-height: 0 !important;
+    height: 30px !important;
+}
+.mat-menu-panel{
+	min-width: 80px !important;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+
+.scrollbar-height{
+    height: 68vh;
+    // height: 40vh;
+}
+
+.active {
+
+    background-color: #c0d3ff;
+}
+
+.page-body{
+	margin-bottom: 10px;
+    padding-top: 10px;
+    width: 90%; 
+}

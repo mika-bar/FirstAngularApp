@@ -80,7 +80,7 @@ export class PokemonsListComponent implements OnInit {
   }
 
   onScrollDown() {
-    debugger
+    
     this.offset = this.offset + 20;
     if (!!this.nextUrl) {
       // debugger

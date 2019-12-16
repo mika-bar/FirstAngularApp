@@ -37,15 +37,15 @@ export class AuthService {
 	
 
 	logout() {
-		sessionStorage.removeItem('barim-token');
-		this.router.navigateByUrl('/login');
+		// sessionStorage.removeItem('barim-token');
+		// this.router.navigateByUrl('/login');
 	}
 
 	getToken() {
-		return sessionStorage.getItem('barim-token');
+		// return sessionStorage.getItem('barim-token');
 	}
 
 	setToken(token: string) {
-		sessionStorage.setItem('barim-token', token);
+		// sessionStorage.setItem('barim-token', token);
 	}
 }
