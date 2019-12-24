@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { $ } from 'protractor';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { LogoutService } from '../services/logout.service';
 
 @Component({
     selector: 'app-header',
@@ -18,6 +17,8 @@ export class HeaderComponent {
     isFavouritesOpen = false;
 
     showPokemonsList=true;
+
+    constructor(private logoutService: LogoutService){}
 
     // constructor(private breakpointObserver: BreakpointObserver) { 
     //     const isSmallScreen = this.breakpointObserver.isMatched('(max-width: 768px)');
@@ -43,6 +44,16 @@ export class HeaderComponent {
 
     onLogIn() {
         this.isMenuOpen = !this.isMenuOpen;
+
+    }
+    onLogout(){
+        this.logoutService.logout().subscribe(reponse=>{
+            console.log('logged out!');
+        },error=>{
+            console.log(error.message);
+        })
+
+        //his.http.post('http://localhost:3000/users/logout',)
 
     }
 

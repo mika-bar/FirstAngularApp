@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { userResponse, User } from './user-model.model'
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +25,7 @@ export class HomeComponent implements OnInit {
   //@ViewChild('f', { static: false }) signupForm: NgForm;
   @ViewChild('f') signupForm: NgForm;
   constructor(private authService: AuthService, private cookieService: CookieService,
-    private router:Router) { }
+    private router:Router, private loginService: LoginService) { }
 
   ngOnInit() {
 
@@ -52,21 +55,29 @@ export class HomeComponent implements OnInit {
     if (this.rememberMe) {
       this.cookieService.set('user name', this.username);
       this.cookievalue = this.cookieService.get('user name');
-      console.log(this.cookievalue);
+      console.log('user name: '+ this.cookievalue);
 
       this.cookieService.set('user password', this.password);
       this.cookievalue = this.cookieService.get('user password');
-      console.log(this.cookievalue);
+      console.log('user password: '+ this.cookievalue);
       // console.log(this.rememberMe);
 
       this.authService.loadContent();
     }
 
+    this.loginService.login(this.username, this.password).subscribe((responseData: userResponse) => {
+      this.cookieService.set('user token',responseData.token);
+      this.cookievalue = this.cookieService.get('user token');
+      console.log('user token: '+ this.cookievalue)
+    },error => {
+      console.log(error.message)
+
+    });
+
     this.signupForm.reset();
 
     this.authService.login();
 
-    // console.log(this.rememberMe);
   }
 
 

@@ -17,6 +17,9 @@ export class JwtInterceptor implements HttpInterceptor {
 	intercept(req: HttpRequest<any>,
 		next: HttpHandler): Observable<HttpEvent<any>> {
 
+		if (req.url === 'http://localhost:3000/users/login') {
+			return next.handle(req);
+		}
 		const jwtToken = this.authService.getToken();
 
 		const cloned = req.clone({

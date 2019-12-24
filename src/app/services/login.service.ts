@@ -6,8 +6,8 @@ import { Pagination } from '../models/pagination';
 
 export class LoginService extends HttpHandler {
 
-	public login(email: string, password: string) {
-		const url = 'login';
-		return this.post(url, {email , password});
+	public login(userName: string, password: string) {
+		const url = 'users/login';
+		return this.post(url, {userName , password});
 	}
 }
