@@ -159,12 +159,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 			{
 				provide: DateAdapter,
 				useClass: DateFormat
+			},
+			{
+				provide: HTTP_INTERCEPTORS,
+				useClass: JwtInterceptor,
+				multi: true
 			}
-			// {
-			// 	provide: HTTP_INTERCEPTORS,
-			// 	useClass: JwtInterceptor,
-			// 	multi: true
-			// },
 			// {
 			// 	provide: HTTP_INTERCEPTORS,
 			// 	useClass: ErrorInterceptor,

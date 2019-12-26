@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { MessagesService } from 'src/app/services/messages.service';
+import { GithubSearchService } from '../services/github-search.service';
 
 // import { AuthService, AuthResponseData } from './auth.service';
 
@@ -37,7 +38,7 @@ export class GithubComponent implements OnInit {
 
 	constructor(private http: HttpClient,private userService: UserService, private sharedData: SharedDataService,
 		private router: Router, private r: ActivatedRoute, private dialog: MatDialog,
-		private fb: FormBuilder, private messageService: MessagesService) {
+		private fb: FormBuilder, private messageService: MessagesService, private githubSearchService: GithubSearchService) {
 		this.createColsTableItem();
 		this.form = fb.group({
 			name_search: [''],
@@ -71,6 +72,13 @@ export class GithubComponent implements OnInit {
     //let name = form.value.repositoryName;
 
     let getObs: Observable<any>;
+
+    this.githubSearchService.save(this.repositoryName).subscribe(res=>{
+      console.log(res.body);
+    },err=>{
+      console.log(err.message);
+    })
+    
 
     // authObs = this.authService.login(email, password);
     getObs = this.http.get(`https://api.github.com/search/repositories?per_page=${this.itemPerPage}&page=${this.pagination.page}&q=${this.repositoryName}+in:name`)

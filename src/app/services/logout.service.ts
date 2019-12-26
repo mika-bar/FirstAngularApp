@@ -14,10 +14,10 @@ export class LogoutService extends HttpHandler {
   }
 
   public logout(){
-    const token = this.authService.getToken();
-    console.log(token);
+    // const token = this.authService.getToken();
+    // console.log(token);
     const url = 'users/logout';
-    this.headers = new HttpHeaders().set('Authorization','Bearer '+token);
+    // this.headers = new HttpHeaders().set('Authorization','Bearer '+token);
     this.authService.logout();
     return this.post(url,{});
 

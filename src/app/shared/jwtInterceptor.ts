@@ -21,6 +21,7 @@ export class JwtInterceptor implements HttpInterceptor {
 			return next.handle(req);
 		}
 		const jwtToken = this.authService.getToken();
+		console.log(jwtToken)
 
 		const cloned = req.clone({
 			headers: req.headers.append('Authorization',
