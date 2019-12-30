@@ -6,6 +6,7 @@ import { Subject, throwError, Subscription, BehaviorSubject } from 'rxjs';
 import { Pokemon, PokemonName } from './pokemon-model.model'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { FavouritesService } from '../services/favourites.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class PokemonsListComponent implements OnInit {
   @Input() index: number;
 
   constructor(private http: HttpClient, private cookieService: CookieService,
-    private router: Router) { }
+    private router: Router, private favouritesService: FavouritesService ) { }
 
   ngOnInit() {
     this.fetchPokemons();
@@ -97,30 +98,54 @@ export class PokemonsListComponent implements OnInit {
     const cookies: {} = this.cookieService.getAll();
     let numOfCookies = Object.keys(cookies).length;
 
-    if (!this.isFavourite(item.name)) {
+    this.favouritesService.getFavourite(item).subscribe(res =>{
+      item.isFavourite=false;
+      this.favouritesService.deleteFavourite(item).subscribe(res=>{
+        console.log('deleted from favourites! ');
+        const index= this.favouritesArray.indexOf(item);
+        this.favouritesArray.splice(index,1);
 
+      },err=>{
+        console.log('couldnt delete from favourites ! ');
+
+      })
+    }, error => {
+      console.log('item needs to be added to favourites! ');
       item.isFavourite = true;
-
-      console.log("favourites before adding: " + numOfCookies);
-
       this.favouritesArray.push(item);
-      this.cookieService.set(item.name, item.name);
-      this.cookievalue = this.cookieService.get(item.name);
-      console.log("added pokemon: " + this.cookievalue);
-      console.log("favourites after adding: " + numOfCookies);
+      this.favouritesService.save(item).subscribe(res=>{
+        console.log(res);
+      },err=>{
+        console.log(err);
+      })
 
-    }
-    else {
+
+    })
+    
+    // if (!this.isFavourite(item.name)) {
+
+    //   item.isFavourite = true;
+
+    //   console.log("favourites before adding: " + numOfCookies);
+
+    //   this.favouritesArray.push(item);
+    //   this.cookieService.set(item.name, item.name);
+    //   this.cookievalue = this.cookieService.get(item.name);
+    //   console.log("added pokemon: " + this.cookievalue);
+    //   console.log("favourites after adding: " + numOfCookies);
+
+    // }
+    // else {
     
 
-      console.log("favourites before delete: " + numOfCookies);
+    //   console.log("favourites before delete: " + numOfCookies);
 
-      console.log(this.cookievalue);
-      this.cookieService.delete(item.name);
-      item.isFavourite = false; 
-      console.log("favourites after delete: " + numOfCookies);
+    //   console.log(this.cookievalue);
+    //   this.cookieService.delete(item.name);
+    //   item.isFavourite = false; 
+    //   console.log("favourites after delete: " + numOfCookies);
 
-    }
+    // }
   }
 }
 

@@ -8,5 +8,5 @@ export interface Pokemon{
 export class PokemonName {
     name: string;
     url?:string;
-    isFavourite: boolean;   
+    isFavourite?: boolean;   
 }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { LogoutService } from '../services/logout.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent {
 
     showPokemonsList=true;
 
-    constructor(private logoutService: LogoutService){}
+    constructor(private logoutService: LogoutService, private cookieService: CookieService){}
 
     // constructor(private breakpointObserver: BreakpointObserver) { 
     //     const isSmallScreen = this.breakpointObserver.isMatched('(max-width: 768px)');
@@ -48,7 +49,11 @@ export class HeaderComponent {
     }
     onLogout(){
         this.logoutService.logout().subscribe(reponse=>{
-            console.log('logged out!');
+            this.cookieService.delete('user token');
+            if (!this.cookieService.get('user token')){
+                console.log('deleted user token! logging out ')
+            }
+            // console.log('logged out!');
         },error=>{
             console.log(error.message);
         })

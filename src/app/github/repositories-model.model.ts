@@ -11,3 +11,10 @@ export class Repository {
     language: string;
     stargazers_count: number;
 }
+
+export interface SearchResult {
+    repositoryName: string;
+    userid: string;
+    __v: number;
+    _id: string;
+}

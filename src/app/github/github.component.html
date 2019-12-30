@@ -1,7 +1,13 @@
 <div class="search-bar">
   <div class="form-group">
-    <label for="repository-name">Enter repository: </label>
-    <input id="repository-name" class="form-control" [(ngModel)]="repositoryName" required />
+    <mat-form-field floatLabel="always" [matMenuTriggerFor]="menu">
+      <mat-label>Enter repository: </mat-label>
+      <input matInput style="margin-left: 20px;"
+        id="repository-name" [(ngModel)]="repositoryName" (click)="showHistory($event)" autocomplete="off">
+    </mat-form-field>
+    <mat-menu #menu="matMenu"[overlapTrigger]="false" yPosition="below">
+      <button mat-menu-item *ngFor="let item of searches ; let i = index" (click)="repositoryName=item;">{{item}}</button>
+    </mat-menu>
   </div>
   <div>
     <button class="btn btn-primary"  (click)="onSubmit()">Search</button>
@@ -13,3 +19,5 @@
 
 
 </div>
+
+<!-- *ngIf="showHistoryBar" class="history-bar-item" class="form-control" class="history-bar" [matMenuTriggerFor]="menu" for="repository-name"-->

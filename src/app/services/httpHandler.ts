@@ -19,6 +19,7 @@ export class HttpHandler {
 	}
 	public delete(url: string, params: HttpParams = undefined): Observable<any> {
 		return this.http.delete(this.baseUrl + url, { params: params, headers: this.headers });
+		
 	}
 
 	public put(url: string, body: any): Observable<any> {

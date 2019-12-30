@@ -6,7 +6,22 @@
     width: 90%;
 
     input {
+        width: 100%;
+    }
+
+    .history-bar {
+        
         width: 200px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .history-bar-item {
+        // border: 1px solid #656a6f ;
+        border-top-style: none;
+        box-sizing: border-box;
+        text-align: center;
     }
 
 }

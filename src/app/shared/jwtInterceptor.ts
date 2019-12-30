@@ -20,6 +20,9 @@ export class JwtInterceptor implements HttpInterceptor {
 		if (req.url === 'http://localhost:3000/users/login') {
 			return next.handle(req);
 		}
+		if (req.url.includes("https://api.github.com/search/repositories")){
+			return next.handle(req);
+		}
 		const jwtToken = this.authService.getToken();
 		console.log(jwtToken)
 

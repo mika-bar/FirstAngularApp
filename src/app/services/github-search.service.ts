@@ -6,9 +6,15 @@ import { HttpHandler } from './httpHandler';
 })
 export class GithubSearchService extends HttpHandler{
 
-  public save(repoName:string){
-    const url='githubSearch';
-    return this.post(url,{repoName});
+  public save(repositoryName:string){
+    const url='githubSearches';
+    return this.post(url,{repositoryName});
 
   }
+
+  public getSearches(){
+    const url='githubSearches/me';
+    return this.get(url);
+  }
+
 }
