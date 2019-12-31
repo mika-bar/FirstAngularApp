@@ -9,6 +9,7 @@ import localeAu from '@angular/common/locales/en-AU';
 import { registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatSidenavModule } from '@angular/material/sidenav';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 registerLocaleData(localeAu);
 
@@ -107,7 +108,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		FormsModule,
 		HttpClientModule,
 		InfiniteScrollModule,
-		NgxMaterialTimepickerModule.forRoot()
+		NgxMaterialTimepickerModule.forRoot(),
+		FlexLayoutModule
 	],
 	declarations: [
 		AppComponent,

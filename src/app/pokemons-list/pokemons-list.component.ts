@@ -7,7 +7,7 @@ import { Pokemon, PokemonName } from './pokemon-model.model'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { FavouritesService } from '../services/favourites.service';
-
+import { Favourite } from '../favourites/favourite-model.model';
 
 @Component({
   selector: 'app-pokemons-list',
@@ -32,10 +32,45 @@ export class PokemonsListComponent implements OnInit {
   @Input() index: number;
 
   constructor(private http: HttpClient, private cookieService: CookieService,
-    private router: Router, private favouritesService: FavouritesService ) { }
+    private router: Router, private favouritesService: FavouritesService) { }
 
   ngOnInit() {
+    this.fetchFavourites();
     this.fetchPokemons();
+  }
+  ngOnChanges() {
+    this.fetchFavourites();
+    this.fetchPokemons();
+  }
+
+  //   isFavourite(key, pokemonName: PokemonName): boolean {
+
+  //   //   const isFavourite = () => {
+  //   //     this.favouritesService.getFavourite(pokemonName).subscribe(
+  //   //       res=>{
+  //   //         return true;
+  //   //       },err=>{
+  //   //         return false;
+  //   //       }
+  //   //     )
+  //   //   }
+  //   //   return isFavourite;
+  //   // }
+
+  //   // return this.cookieService.check(key) || isFavourite;
+
+  // }
+
+  fetchFavourites() {
+    const favourites = this.favouritesService.getFavourites().subscribe((res: Favourite[]) => {
+      res.forEach(result => {
+        this.favouritesArray.push({ name: result.pokemonName });
+      })
+    }, err => {
+      console.log('could not get all favourites list! ')
+
+    })
+    console.log(this.favouritesArray);
   }
 
   fetchPokemons(getOffset = 0) {
@@ -60,14 +95,18 @@ export class PokemonsListComponent implements OnInit {
         this.nextUrl = responseData.next;
         console.log(responseData);
         responseData.results.forEach(result => {
-          const pokemon = {
-            name: result.name,
-            isFavourite: this.isFavourite(result.name)
-          }
-          this.postsArray.push(pokemon);
+          let isFavouritetemp = this.favouritesArray.some(favourite => favourite.name === result.name );
+
+          const pokemon = new PokemonName(
+            result.name, '',
+            isFavouritetemp
+          );
+          // this.postsArray.push(pokemon);
+          this.namesArray.push(pokemon);
+          console.log(pokemon.name, pokemon.isFavourite);
         })
-        this.namesArray = this.postsArray;
-        console.log(this.namesArray);
+        // this.namesArray = this.postsArray;
+        console.log('fetchPokemons happened! ');
       },
       error => {
         //delete this if not needed
@@ -76,12 +115,10 @@ export class PokemonsListComponent implements OnInit {
     );
   }
 
-  isFavourite(key) {
-    return this.cookieService.check(key);
-  }
+
 
   onScrollDown() {
-    
+
     this.offset = this.offset + 20;
     if (!!this.nextUrl) {
       // debugger
@@ -98,30 +135,27 @@ export class PokemonsListComponent implements OnInit {
     const cookies: {} = this.cookieService.getAll();
     let numOfCookies = Object.keys(cookies).length;
 
-    this.favouritesService.getFavourite(item).subscribe(res =>{
-      item.isFavourite=false;
-      this.favouritesService.deleteFavourite(item).subscribe(res=>{
+    this.favouritesService.getFavourite(item).subscribe(res => {
+
+      this.favouritesService.deleteFavourite(item).subscribe(res => {
         console.log('deleted from favourites! ');
-        const index= this.favouritesArray.indexOf(item);
-        this.favouritesArray.splice(index,1);
-
-      },err=>{
+        item.isFavourite = false;
+        const index = this.favouritesArray.indexOf(item);
+        this.favouritesArray.splice(index, 1);
+      }, err => {
         console.log('couldnt delete from favourites ! ');
-
       })
     }, error => {
       console.log('item needs to be added to favourites! ');
-      item.isFavourite = true;
-      this.favouritesArray.push(item);
-      this.favouritesService.save(item).subscribe(res=>{
+      this.favouritesService.save(item).subscribe(res => {
+        this.favouritesArray.push(item);
         console.log(res);
-      },err=>{
+        item.isFavourite = true;
+      }, err => {
         console.log(err);
       })
-
-
     })
-    
+
     // if (!this.isFavourite(item.name)) {
 
     //   item.isFavourite = true;
@@ -136,7 +170,7 @@ export class PokemonsListComponent implements OnInit {
 
     // }
     // else {
-    
+
 
     //   console.log("favourites before delete: " + numOfCookies);
 

@@ -1,6 +1,6 @@
 <div class="search-bar">
   <div class="form-group">
-    <mat-form-field floatLabel="always" [matMenuTriggerFor]="menu">
+    <mat-form-field floatLabel="auto" [matMenuTriggerFor]="menu">
       <mat-label>Enter repository: </mat-label>
       <input matInput style="margin-left: 20px;"
         id="repository-name" [(ngModel)]="repositoryName" (click)="showHistory($event)" autocomplete="off">

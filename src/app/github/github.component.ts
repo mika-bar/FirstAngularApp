@@ -64,7 +64,7 @@ export class GithubComponent implements OnInit {
   }
 
   showHistory(event) {
-    event.stopPropagation();
+    // event.stopPropagation();
     this.showHistoryBar = !this.showHistoryBar;
     if (this.showHistoryBar) {
       this.githubSearchService.getSearches().subscribe((responseData: SearchResult[])=> {
