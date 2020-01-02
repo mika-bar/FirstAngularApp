@@ -36,11 +36,9 @@ export class PokemonsListComponent implements OnInit {
 
   ngOnInit() {
     this.fetchFavourites();
-    this.fetchPokemons();
   }
   ngOnChanges() {
     this.fetchFavourites();
-    this.fetchPokemons();
   }
 
   //   isFavourite(key, pokemonName: PokemonName): boolean {
@@ -66,6 +64,7 @@ export class PokemonsListComponent implements OnInit {
       res.forEach(result => {
         this.favouritesArray.push({ name: result.pokemonName });
       })
+      this.fetchPokemons();
     }, err => {
       console.log('could not get all favourites list! ')
 
@@ -75,7 +74,7 @@ export class PokemonsListComponent implements OnInit {
 
   fetchPokemons(getOffset = 0) {
 
-    this.http.get(`https://pokeapi.co/api/v2/pokemon/?offset=${getOffset}&limit=20`).pipe(
+    this.http.get(`https://pokeapi.co/api/v2/pokemon/?offset=${getOffset}&limit=32`).pipe(
       // map((responseData: Pokemon) => {
       //   const postsArray: string[] = [];
       //   responseData.results.forEach(result => {
