@@ -1,0 +1,2 @@
+<button [ngClass]="{'full-width': fullWidth}" *ngIf="!isWaiting" class="btn btn-primary"  [disabled]="!buttonValid" (click)="clickedEvent()">{{text}}</button>
+<button [ngClass]="{'full-width': fullWidth}" *ngIf="isWaiting" class="btn btn-primary"><app-spinner [white]="true" small="true"></app-spinner></button>

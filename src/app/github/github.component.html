@@ -1,0 +1,23 @@
+<div class="search-bar">
+  <div class="form-group">
+    <mat-form-field floatLabel="auto" [matMenuTriggerFor]="menu">
+      <mat-label>Enter repository: </mat-label>
+      <input matInput style="margin-left: 20px;"
+        id="repository-name" [(ngModel)]="repositoryName" (click)="showHistory($event)" autocomplete="off">
+    </mat-form-field>
+    <mat-menu #menu="matMenu"[overlapTrigger]="false" yPosition="below">
+      <button mat-menu-item *ngFor="let item of searches ; let i = index" (click)="repositoryName=item;">{{item}}</button>
+    </mat-menu>
+  </div>
+  <div>
+    <button class="btn btn-primary"  (click)="onSubmit()">Search</button>
+  </div>
+
+  <app-repo-table tableHeightVH="55" [cols]="this.cols" [data]="repositoriesArray" [page]="this.pagination.page"
+    [itemsPerPage]="this.pagination.itemsPerPage" [totalPages]="this.totalPages" [withActions]="false" [withEdit]="true"
+    [withReport]="true" [withRemove]="true" (nextPage)="this.nextPage()" (prevPage)="this.prevPage()"></app-repo-table>
+
+
+</div>
+
+<!-- *ngIf="showHistoryBar" class="history-bar-item" class="form-control" class="history-bar" [matMenuTriggerFor]="menu" for="repository-name"-->

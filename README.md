@@ -1,6 +1,6 @@
-# FavouriteMoviesApp
+# WebTemplate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
 
@@ -13,6 +13,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+For setting the environment on build , do `ng build --configuration={{environment}}`  {{environment}} ->  need to have matching on angular.json 
+Demo  production - ng build --configuration=production  dev - ng build --configuration=development
 
 ## Running unit tests
 

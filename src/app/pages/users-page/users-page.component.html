@@ -1,0 +1,15 @@
+<div class="page-container">
+	<div class="page-title">Users</div>
+	<div class="page-body mat-card">
+		<div class="search-inputs-container">
+			<mat-form-field class="full-width">
+				<input matInput type="text" placeholder="Name Search" [formControl]="form.controls['name_search']">
+			</mat-form-field>
+			<app-search-button [disabled]="!form.controls['name_search'].value" (searchClicked)="searchClicked()" (clearSearch)="clearSearch()"></app-search-button>
+		</div>
+	</div>
+	<app-table tableHeightVH="63" [cols]="this.cols" [data]="this.pageUsers" [page]="this.pagination.page" [itemsPerPage]="this.pagination.itemsPerPage"
+	 [totalPages]="this.totalPages" [withActions]="true" [withEdit]="true" [withReport]="true" [withRemove]="true"
+	 (nextPage)="this.nextPage()" (prevPage)="this.prevPage()" (editAction)="this.editClicked($event)" (removeAction)="this.removeClicked($event)" (reportAction)="this.userReport($event)"
+	></app-table>
+</div>	

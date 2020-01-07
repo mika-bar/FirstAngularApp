@@ -1,0 +1,8 @@
+<div class="pokemons-container">
+    <div class="pokemons-list"> 
+        <div class="pokemons-list-item" *ngFor="let item of favouritesArray">{{ item }}</div>
+        <!-- <div class="pokemons-list-item" *cdkVirtualFor="let item of namesArray; let i=index" 
+            [infiniteScrollContainer]="app-pokemons-list" [fromRoot]="true"
+        onscroll="onScrollDown()" >{{ item }}</div> -->
+    </div>
+</div>

@@ -1,9 +1,36 @@
 <a
-    *ngIf="index!==0"
+    *ngIf="index===1"
     style="cursor: pointer;"
-    [routerLink]="[index]"
+    [routerLink]="[sidebarItem.name]"
     routerLinkActive="active"
     style="text-decoration:none"
+    (click)="displaySearch()"
+    class="list-group-item clearfix item">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading itemText">{{ sidebarItem.name }}</h4>
+    </div>
+</a>
+
+<a
+    *ngIf="index===2"
+    style="cursor: pointer;"
+    [routerLink]="[sidebarItem.name]"
+    routerLinkActive="active"
+    style="text-decoration:none"
+    (click)="displayFavourites()"
+    class="list-group-item clearfix item">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading itemText">{{ sidebarItem.name }}</h4>
+    </div>
+</a>
+
+<a
+    *ngIf="index===3"
+    style="cursor: pointer;"
+    [routerLink]="[sidebarItem.name]"
+    routerLinkActive="active"
+    style="text-decoration:none"
+    (click)="displayGitHub()"
     class="list-group-item clearfix item">
     <div class="pull-left">
         <h4 class="list-group-item-heading itemText">{{ sidebarItem.name }}</h4>
@@ -11,11 +38,12 @@
 </a>
 
 <!-- class="list-group-item clearfix item" -->
+<!-- [routerLink]="/search" -->
 
 <a
     *ngIf="index===0"
     style="cursor: pointer;"
-    [routerLink]="[index]"
+    [routerLink]="[sidebarItem.name]"
     style="text-decoration:none"
     class="list-group-item clearfix item">
     <div class="pull-left">

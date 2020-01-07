@@ -1,0 +1,41 @@
+<!-- <button class="btn btn-default" (click)="onLogin()">Log in</button>
+<button class="btn btn-default" (click)="onLogout()">Log out</button> -->
+
+<form (ngSubmit)="onSubmit()" #f="ngForm" class="loginForm">
+
+    <label for="firstname" *ngIf="!isLogIn">First name</label>
+    <input type="text" id="firstname" class="form-control" ngModel name="firstname" required *ngIf="!isLogIn">
+        
+    <label for="lastname" *ngIf="!isLogIn">Last name</label>
+    <input type="text" id="lastname" class="form-control" ngModel name="lastname" required *ngIf="!isLogIn">   
+
+    <label for="username">User name</label>
+    <input type="text" id="username" class="form-control" ngModel name="username" required>
+    
+    <label for="password">Password</label>
+    <input type="text" id="password" class="form-control" ngModel name="password" required>
+
+    <div class="radio">
+        <label>
+            <input type="radio" name="checkbox" ngModel [value]="checkbox" (click)="checkboxClicked()">
+            {{ checkbox }}
+        </label>
+    </div>
+    <div style="display: flex; flex-direction: row">
+        <button class="btn btn-primary" *ngIf="isLogIn" type="submit" [disabled]="!f.valid" >Log In</button>
+        <!-- routerLink="content" -->
+        <button class="btn btn-primary" *ngIf="!isLogIn" [disabled]="!f.valid" type="submit">Sign Up</button>
+    </div>
+
+
+</form>
+
+<!-- <div class="loginData">
+
+    <h3>Your Data</h3>
+    <p>Username: {{ username }}</p>
+    <p>Password: {{ password }}</p>
+
+</div> -->
+
+<!-- <router-outlet></router-outlet> -->

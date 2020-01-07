@@ -1,0 +1,48 @@
+<div class="page-container">
+		<div class="page-title">{{title}}</div>
+		<div class="page-body mat-card inputs-container" *ngIf="userWithData">
+			<div class="input-margin">
+				<mat-form-field class="half-width">
+					<input matInput placeholder="Name" [formControl]="form.controls['full_name']">
+					<mat-error *ngIf="form.controls['full_name'].hasError('required')">Name is required</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="input-margin">
+				<mat-form-field class="half-width">
+					<input matInput type="number" placeholder="ID" [formControl]="form.controls['id_number']">
+					<mat-error *ngIf="form.controls['id_number'].hasError('required')">Id is required</mat-error>
+					<mat-error *ngIf="!form.controls['id_number'].hasError('required') && form.controls['id_number'].hasError('invalidId')">Id
+						is invalid</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="input-margin">
+				<mat-form-field class="half-width">
+					<input type="text" matInput placeholder="Phone" [formControl]="form.controls['phone']">
+					<mat-error *ngIf="form.controls['phone'].hasError('required')">Phone is required</mat-error>
+					<mat-error *ngIf="form.controls['phone'].hasError('pattern')">Phone need to start with 0 and need to have 10 digits in total</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="input-margin">
+				<mat-form-field class="half-width">
+					<input matInput [matDatepicker]="picker" [formControl]="form.controls['date_of_birth']" placeholder="Birth Date">
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+					<mat-error *ngIf="form.controls['date_of_birth'].hasError('required')">Date of birth is required</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="input-margin">
+				<mat-form-field class="half-width">
+					<mat-select placeholder="Gender" [formControl]="form.controls['gender']">
+						<mat-option value="male">Male</mat-option>
+						<mat-option value="female">Female</mat-option>
+					</mat-select>
+					<mat-error *ngIf="form.controls['gender'].hasError('required')">Gender is required</mat-error>
+				</mat-form-field>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="buttons-section">
+				<button class="btn back-button" (click)="backClicked()">Back</button>
+				<app-button-wrapper [buttonValid]="form.valid" [fullWidth]="false" [text]="buttonText" (buttonClick)="buttonOnClick()" [isWaiting]="waitingResponse"></app-button-wrapper>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,13 @@
+.c-layout{
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+.c-menu{
+	width: 250px;
+}
+
+.c-app{
+	width: calc(100% - 250px);
+}
