@@ -102,12 +102,12 @@ export class RepoTableComponent implements OnInit {
   }
 
   rowClicked(rowData, event) {
-	event.preventDefault();
+	// event.preventDefault();
 	window.open(this.redirectToRepo(rowData), "_blank");
   }
 
   nameClicked(event) {
-	
+	event.stopPropagation();
 	
   }
 

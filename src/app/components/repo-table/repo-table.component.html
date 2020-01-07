@@ -18,7 +18,7 @@
                 <ng-container *ngFor="let col of this.cols">
                     <td *ngIf="col.type === 'text'">{{utils.getPropByString(rowData,col.propName)}}</td>
                     <td *ngIf="col.type === 'repo-name'">
-                      <button (click)="nameClicked($event); clicked = idx;"></button>
+                      <button (click)="nameClicked($event);clicked = idx"></button>
                       {{utils.getPropByString(rowData,col.propName)}}</td>
                     <!-- <td *ngIf="col.type === 'date'">{{utils.getPropByString(rowData,col.propName) | date:'short'}}</td> -->
                     <td *ngIf="col.type === 'url'">
