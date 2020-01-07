@@ -99,8 +99,16 @@ export class RepoTableComponent implements OnInit {
   redirectToRepo(rowData: Repository):string{
     this.currentRepoLink=rowData.html_url;
     return this.currentRepoLink;
+  }
 
+  rowClicked(rowData, event) {
+	// event.preventDefault();
+	window.open(this.redirectToRepo(rowData), "_blank");
+  }
 
+  nameClicked(event) {
+	event.stopPropagation();
+	
   }
 
 }

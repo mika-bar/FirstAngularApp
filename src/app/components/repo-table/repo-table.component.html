@@ -13,12 +13,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let rowData of this.data; let idx = index" (click)="clicked=idx" [ngClass]="{'active':clicked===idx}">
+              <tr *ngFor="let rowData of this.data; let idx = index" (click)="rowClicked(rowData, $event)" [ngClass]="{'active':clicked===idx}">
                 <td>{{ ((this.page - 1) * this.itemsPerPage) + idx + 1}}</td>
                 <ng-container *ngFor="let col of this.cols">
                     <td *ngIf="col.type === 'text'">{{utils.getPropByString(rowData,col.propName)}}</td>
-                    <td *ngIf="col.type === 'repo-name'" ><a target="_blank" style="text-decoration:none;" 
-                      [href]="redirectToRepo(rowData)" >{{utils.getPropByString(rowData,col.propName)}}</a></td>
+                    <td *ngIf="col.type === 'repo-name'">
+                      <button (click)="nameClicked($event);clicked = idx"></button>
+                      {{utils.getPropByString(rowData,col.propName)}}</td>
                     <!-- <td *ngIf="col.type === 'date'">{{utils.getPropByString(rowData,col.propName) | date:'short'}}</td> -->
                     <td *ngIf="col.type === 'url'">
                       <!-- <app-table-img defaultImageUrl="assets/img/user-default.svg" [imageUrl]="utils.getPropByString(rowData,col.propName)" ></app-table-img> -->
